@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7c8d7">
+<title>Canım Sevgilim Ayşenur ❤️</title>
+<style>
+:root{--rose:#d85f88;--deep:#873d60;--pale:#fff3f6;--ink:#60384b}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:Georgia,"Times New Roman",serif;background:linear-gradient(135deg,#fff7fa,#f9dce7 48%,#fff0f4);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(#d85f88 1px,transparent 1px);background-size:26px 26px}
+.wrap{width:min(960px,92%);margin:auto;padding:28px 0 60px;position:relative}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:25px}
+.brand{font-size:1.1rem;color:var(--deep);font-weight:bold}
+button,.btn{border:0;border-radius:999px;padding:11px 17px;background:var(--rose);color:white;cursor:pointer;font:600 .95rem Arial;box-shadow:0 5px 16px #d85f8833;transition:transform .15s ease,filter .15s ease}
+button:hover,.btn:hover{transform:translateY(-1px);filter:brightness(1.03)}
+.hero{text-align:center;padding:65px 20px 58px;border:1px solid #fff;border-radius:30px;background:#ffffffb8;box-shadow:0 18px 55px #a94e7020;overflow:hidden;position:relative}
+.eyebrow{letter-spacing:.18em;text-transform:uppercase;font:700 .72rem Arial;color:var(--rose)}
+h1{font-size:clamp(2.3rem,7vw,4.8rem);line-height:1.04;color:var(--deep);margin:17px 0}
+.hero p{font-size:1.2rem;line-height:1.7;max-width:600px;margin:15px auto}
+.heart{font-size:2.3rem;animation:pulse 1.5s infinite;display:inline-block}
+@keyframes pulse{50%{transform:scale(1.18)}}
+.section{margin-top:28px;padding:30px;border-radius:25px;background:#ffffffd9;border:1px solid #fff;box-shadow:0 12px 35px #a94e7015}
+h2{color:var(--deep);font-size:1.8rem;margin:0 0 15px}
+.muted{font:.92rem Arial;color:#9a6b7e;line-height:1.6}
+.counter{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.stat{background:var(--pale);border-radius:18px;padding:18px 10px;text-align:center}
+.stat strong{display:block;color:var(--rose);font:700 clamp(1.8rem,5vw,2.7rem) Arial}
+.stat span{font:.82rem Arial;color:#8f6477}
+.letter{font-size:1.18rem;line-height:1.9;white-space:pre-line}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.photo{aspect-ratio:1/1;border:2px dashed #e8a5bc;border-radius:18px;background:linear-gradient(145deg,#fff0f5,#f8d5e1);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px;overflow:hidden;color:#a75d7a;font:.9rem Arial;position:relative;cursor:pointer}
+.photo img{position:absolute;width:100%;height:100%;object-fit:cover;inset:0}
+.photo span{font-size:2rem;margin-bottom:8px}
+input[type=file]{display:none}
+.memories{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.memory{padding:17px;border-radius:16px;background:var(--pale);line-height:1.6}
+.memory b{color:var(--deep);display:block;margin-bottom:4px}
+.addrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+input[type=text]{min-width:0;flex:1;border:1px solid #edbfd0;border-radius:12px;padding:12px;font:1rem Arial;background:#fffafd;color:var(--ink)}
+input[type=text]:focus{outline:2px solid #e8a5bc;border-color:transparent}
+footer{text-align:center;padding:35px 10px 0;color:#a56d84;line-height:1.8}
+.tiny{font:.78rem Arial;color:#a47a8c}
+@media(max-width:620px){.hero{padding:48px 17px}.section{padding:22px}.gallery{grid-template-columns:repeat(2,1fr)}.memories{grid-template-columns:1fr}.counter{gap:7px}.stat{padding:15px 5px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">♡ Bizim küçük dünyamız</div>
+    <button id="musicBtn" type="button">♫ Müziği başlat</button>
+  </nav>
+
+  <header class="hero">
+    <div class="heart">♥</div>
+    <div class="eyebrow">Sadece sana, Ayşenur</div>
+    <h1>Canım Sevgilim<br>Ayşenur</h1>
+    <p>Bu küçük dünya, en güzel tesadüfüme…<br><strong>Sana.</strong></p>
+    <div class="tiny">17 Ağustos 2025'ten beri, her gün biraz daha…</div>
+  </header>
+
+  <section class="section" style="text-align:center">
+    <h2>Birlikte geçen zamanımız 💗</h2>
+    <p class="muted">Güzel hikâyemizin her günü benim için çok kıymetli.</p>
+    <div class="counter">
+      <div class="stat"><strong id="days">—</strong><span>GÜN</span></div>
+      <div class="stat"><strong id="hours">—</strong><span>SAAT</span></div>
+      <div class="stat"><strong id="minutes">—</strong><span>DAKİKA</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Sana bir mektubum var 💌</h2>
+    <div class="letter">Canım sevgilim Ayşenur,
+
+Seni çok seviyorum hayatım.
+Her anımdasın.
+
+Günün en güzel anında da, en yorucu zamanında da aklımın bir köşesinde hep sen varsın. Seninle biriktirdiğimiz her anı, paylaştığımız her gülüş benim için çok değerli.
+
+İyi ki hayatımdasın, iyi ki yollarımız kesişmiş. Bu sayfa küçük bir hatıra olsun istedim; ne zaman açsan sana seni ne kadar sevdiğimi hatırlatsın.
+
+Nice güzel anılara, el ele ve kalp kalbe…
+
+Seni çok seviyorum. ❤️</div>
+  </section>
+
+  <section class="section">
+    <h2>Bizden kareler 📷</h2>
+    <p class="muted">Sayfa yayınlandığında seçili fotoğraflar herkesin ekranında görünür; istersen bir kutuya dokunarak tarayıcıda farklı bir kare de deneyebilirsin.</p>
+    <div class="gallery" id="gallery">
+      <label class="photo" data-slot="0" data-default-src="foto1.jpeg">
+        <span>＋</span>Fotoğraf ekle
+        <img src="foto1.jpeg" alt="Bizden bir kare 1" onerror="this.remove()">
+        <input type="file" accept="image/*">
+      </label>
+      <label class="photo" data-slot="1" data-default-src="foto2.jpeg">
+        <span>♡</span>Güzel bir anımız
+        <img src="foto2.jpeg" alt="Bizden bir kare 2" onerror="this.remove()">
+        <input type="file" accept="image/*">
+      </label>
+      <label class="photo" data-slot="2" data-default-src="foto3.jpeg">
+        <span>♡</span>Bir başka hatıra
+        <img src="foto3.jpeg" alt="Bizden bir kare 3" onerror="this.remove()">
+        <input type="file" accept="image/*">
+      </label>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Bizim anılarımız ✨</h2>
+    <p class="muted">Birlikte yaşadığımız güzel anları buraya ekleyebiliriz.</p>
+    <div class="memories" id="memories">
+      <div class="memory"><b>17 Ağustos 2025</b>Hikâyemizin başladığı güzel gün. ❤️</div>
+      <div class="memory"><b>Her yeni gün</b>Birlikte biriktireceğimiz yepyeni anılar…</div>
+    </div>
+    <div class="addrow">
+      <input id="memoryInput" type="text" placeholder="Yeni bir anımızı yaz…">
+      <button id="addMemory" type="button">Anı ekle</button>
+    </div>
+  </section>
+
+  <footer>
+    Sen benim en güzel hikâyemsin, Ayşenur. <span style="color:#d85f88">♥</span><br>
+    <span class="tiny">Sevgiyle hazırlandı.</span>
+  </footer>
+</div>
+
+<script>
+const start = new Date(2025, 7, 17, 0, 0, 0);
+function updateCounter() {
+  const diff = Math.max(0, Date.now() - start.getTime());
+  const totalMinutes = Math.floor(diff / 60000);
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+
+  document.getElementById('days').textContent = days.toLocaleString('tr-TR');
+  document.getElementById('hours').textContent = hours.toLocaleString('tr-TR');
+  document.getElementById('minutes').textContent = minutes.toLocaleString('tr-TR');
+}
+updateCounter();
+setInterval(updateCounter, 15000);
+
+function setPhotoImage(label, src) {
+  let img = label.querySelector('img');
+  if (!img) {
+    img = document.createElement('img');
+    img.alt = 'Bizden bir kare';
+    img.onerror = () => img.remove();
+    label.appendChild(img);
+  }
+  img.src = src;
+}
+
+document.querySelectorAll('.photo').forEach(label => {
+  const slot = label.dataset.slot;
+  const savedPhoto = localStorage.getItem('aysenur_photo_' + slot);
+  if (savedPhoto) {
+    setPhotoImage(label, savedPhoto);
+  }
+
+  const input = label.querySelector('input');
+  input.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const imgTemp = new Image();
+      imgTemp.onload = () => {
+        const canvas = document.createElement('canvas');
+        const maxSide = 800;
+        const scale = Math.min(1, maxSide / Math.max(imgTemp.width, imgTemp.height));
+        canvas.width = imgTemp.width * scale;
+        canvas.height = imgTemp.height * scale;
+        canvas.getContext('2d').drawImage(imgTemp, 0, 0, canvas.width, canvas.height);
+        const compressed = canvas.toDataURL('image/jpeg', 0.82);
+        setPhotoImage(label, compressed);
+        try { localStorage.setItem('aysenur_photo_' + slot, compressed); } catch (_) {}
+      };
+      imgTemp.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+});
+
+const memoriesContainer = document.getElementById('memories');
+const memoryInput = document.getElementById('memoryInput');
+const STORAGE_MEMORIES = 'aysenur_memories_v1';
+
+function renderMemory(text, dateLabel = 'Güzel bir anımız') {
+  const item = document.createElement('div');
+  item.className = 'memory';
+  const title = document.createElement('b');
+  title.textContent = dateLabel;
+  const body = document.createElement('span');
+  body.textContent = text;
+  item.append(title, body);
+  memoriesContainer.appendChild(item);
+}
+
+const savedMemories = JSON.parse(localStorage.getItem(STORAGE_MEMORIES) || '[]');
+savedMemories.forEach(m => renderMemory(m.text, m.date));
+
+function handleAddMemory() {
+  const value = memoryInput.value.trim();
+  if (!value) return;
+  const today = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+  renderMemory(value, today);
+  savedMemories.push({ text: value, date: today });
+  localStorage.setItem(STORAGE_MEMORIES, JSON.stringify(savedMemories));
+  memoryInput.value = '';
+}
+
+document.getElementById('addMemory').addEventListener('click', handleAddMemory);
+memoryInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleAddMemory();
+});
+
+let audioCtx = null, noteTimer = null, playing = false;
+const btn = document.getElementById('musicBtn');
+
+btn.addEventListener('click', async () => {
+  if (!playing) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) {
+      btn.textContent = 'Tarayıcı ses desteği sunmuyor';
+      return;
+    }
+    audioCtx = new AC();
+    await audioCtx.resume();
+    const notes = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 783.99, 698.46];
+    let index = 0;
+
+    function playNote() {
+      if (!playing || !audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = notes[index++ % notes.length];
+      gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.055, audioCtx.currentTime + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.85);
+      noteTimer = setTimeout(playNote, 900);
+    }
+
+    playing = true;
+    playNote();
+    btn.textContent = '♫ Müziği durdur';
+  } else {
+    playing = false;
+    if (noteTimer) {
+      clearTimeout(noteTimer);
+      noteTimer = null;
+    }
+    if (audioCtx) {
+      audioCtx.close();
+      audioCtx = null;
+    }
+    btn.textContent = '♫ Müziği başlat';
+  }
+});
+</script>
+</body>
+</html>
