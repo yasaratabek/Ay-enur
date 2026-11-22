@@ -64,9 +64,9 @@ footer{text-align:center;padding:35px 10px 0;color:#a56d84;line-height:1.8}
     <h2>Birlikte geçen zamanımız 💗</h2>
     <p class="muted">Güzel hikâyemizin her günü benim için çok kıymetli.</p>
     <div class="counter">
-      <div class="stat"><strong id="days">—</strong><span>GÜN</span></div>
-      <div class="stat"><strong id="hours">—</strong><span>SAAT</span></div>
-      <div class="stat"><strong id="minutes">—</strong><span>DAKİKA</span></div>
+      <div class="stat"><strong id="days">0</strong><span>GÜN</span></div>
+      <div class="stat"><strong id="hours">0</strong><span>SAAT</span></div>
+      <div class="stat"><strong id="minutes">0</strong><span>DAKİKA</span></div>
     </div>
   </section>
 
@@ -129,19 +129,16 @@ Seni çok seviyorum. ❤️</div>
 
 <script>
 const start = new Date(2025, 7, 17, 0, 0, 0);
-function updateCounter() {
-  const diff = Math.max(0, Date.now() - start.getTime());
-  const totalMinutes = Math.floor(diff / 60000);
-  const days = Math.floor(totalMinutes / 1440);
-  const hours = Math.floor((totalMinutes % 1440) / 60);
-  const minutes = totalMinutes % 60;
 
-  document.getElementById('days').textContent = days.toLocaleString('tr-TR');
-  document.getElementById('hours').textContent = hours.toLocaleString('tr-TR');
-  document.getElementById('minutes').textContent = minutes.toLocaleString('tr-TR');
+function updateTime() {
+  const diff = Math.max(0, Date.now() - start.getTime());
+  document.getElementById('days').textContent = Math.floor(diff / 86400000).toLocaleString('tr-TR');
+  document.getElementById('hours').textContent = Math.floor(diff / 3600000).toLocaleString('tr-TR');
+  document.getElementById('minutes').textContent = Math.floor(diff / 60000).toLocaleString('tr-TR');
 }
-updateCounter();
-setInterval(updateCounter, 15000);
+
+updateTime();
+setInterval(updateTime, 15000);
 
 function setPhotoImage(label, src) {
   let img = label.querySelector('img');
@@ -156,10 +153,10 @@ function setPhotoImage(label, src) {
 
 document.querySelectorAll('.photo').forEach(label => {
   const slot = label.dataset.slot;
-  const savedPhoto = localStorage.getItem('aysenur_photo_' + slot);
-  if (savedPhoto) {
-    setPhotoImage(label, savedPhoto);
-  }
+  try {
+    const savedPhoto = localStorage.getItem('aysenur_photo_' + slot);
+    if (savedPhoto) setPhotoImage(label, savedPhoto);
+  } catch (e) {}
 
   const input = label.querySelector('input');
   input.addEventListener('change', e => {
@@ -177,7 +174,7 @@ document.querySelectorAll('.photo').forEach(label => {
         canvas.getContext('2d').drawImage(imgTemp, 0, 0, canvas.width, canvas.height);
         const compressed = canvas.toDataURL('image/jpeg', 0.82);
         setPhotoImage(label, compressed);
-        try { localStorage.setItem('aysenur_photo_' + slot, compressed); } catch (_) {}
+        try { localStorage.setItem('aysenur_photo_' + slot, compressed); } catch (err) {}
       };
       imgTemp.src = ev.target.result;
     };
@@ -200,7 +197,10 @@ function renderMemory(text, dateLabel = 'Güzel bir anımız') {
   memoriesContainer.appendChild(item);
 }
 
-const savedMemories = JSON.parse(localStorage.getItem(STORAGE_MEMORIES) || '[]');
+let savedMemories = [];
+try {
+  savedMemories = JSON.parse(localStorage.getItem(STORAGE_MEMORIES) || '[]');
+} catch (e) {}
 savedMemories.forEach(m => renderMemory(m.text, m.date));
 
 function handleAddMemory() {
@@ -209,7 +209,7 @@ function handleAddMemory() {
   const today = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
   renderMemory(value, today);
   savedMemories.push({ text: value, date: today });
-  localStorage.setItem(STORAGE_MEMORIES, JSON.stringify(savedMemories));
+  try { localStorage.setItem(STORAGE_MEMORIES, JSON.stringify(savedMemories)); } catch (err) {}
   memoryInput.value = '';
 }
 
@@ -218,52 +218,30 @@ memoryInput.addEventListener('keydown', e => {
   if (e.key === 'Enter') handleAddMemory();
 });
 
-let audioCtx = null, noteTimer = null, playing = false;
-const btn = document.getElementById('musicBtn');
+const music = new Audio('./Levent Yüksel Med Cezir.mp3');
+let isPlaying = false;
+const musicBtn = document.getElementById('musicBtn');
 
-btn.addEventListener('click', async () => {
-  if (!playing) {
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) {
-      btn.textContent = 'Tarayıcı ses desteği sunmuyor';
-      return;
+musicBtn.addEventListener('click', async () => {
+  if (!isPlaying) {
+    try {
+      await music.play();
+      isPlaying = true;
+      musicBtn.textContent = '♫ Müziği durdur';
+    } catch (err) {
+      musicBtn.textContent = '♫ Ses çalınamadı';
     }
-    audioCtx = new AC();
-    await audioCtx.resume();
-    const notes = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 783.99, 698.46];
-    let index = 0;
-
-    function playNote() {
-      if (!playing || !audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.value = notes[index++ % notes.length];
-      gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.055, audioCtx.currentTime + 0.08);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.8);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.85);
-      noteTimer = setTimeout(playNote, 900);
-    }
-
-    playing = true;
-    playNote();
-    btn.textContent = '♫ Müziği durdur';
   } else {
-    playing = false;
-    if (noteTimer) {
-      clearTimeout(noteTimer);
-      noteTimer = null;
-    }
-    if (audioCtx) {
-      audioCtx.close();
-      audioCtx = null;
-    }
-    btn.textContent = '♫ Müziği başlat';
+    music.pause();
+    isPlaying = false;
+    musicBtn.textContent = '♫ Müziği başlat';
   }
+});
+
+music.addEventListener('ended', () => {
+  isPlaying = false;
+  music.currentTime = 0;
+  musicBtn.textContent = '♫ Müziği başlat';
 });
 </script>
 </body>
